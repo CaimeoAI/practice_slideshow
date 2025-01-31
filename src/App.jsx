@@ -5,7 +5,7 @@ function App() {
 
 
   return (
-    <Slideshow />
+    <Slideshow url={"https://picsum.photos/v2/list"} limit={"8"} page={"2"}/>
   )
 }
 

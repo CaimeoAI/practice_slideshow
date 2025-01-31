@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 
 
 
-export default function Slideshow() {
+export default function Slideshow({ url, limit = 5, page = 1 }) {
 
     //? Stores the fetched images
     const [images, setImages] = useState([])
@@ -18,7 +18,7 @@ export default function Slideshow() {
         try{
 
             //? Fetching data from the given URL
-            const response = await fetch(getUrl)
+            const response = await fetch(`${getUrl}?page=${page}&limit=${limit}`)
             //? Converts the reponse from the API into json format so I can use it properly
             const data = await response.json()
 
@@ -34,7 +34,7 @@ export default function Slideshow() {
     }
 
     useEffect(() => {
-        if(url !== '') fetchImages()
+        if(url !== '') fetchImages(url)
     },[url])
 
     if(loading) {
