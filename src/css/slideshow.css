@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+.slideshow-wrapper {
+    width: 40vw;
+    height: 30vh;
+}
+
+img {
+    object-fit: contain;
+}
