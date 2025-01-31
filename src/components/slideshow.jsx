@@ -19,20 +19,24 @@ export default function Slideshow({ url, limit = 5, page = 1 }) {
 
             //? Fetching data from the given URL
             const response = await fetch(`${getUrl}?page=${page}&limit=${limit}`)
-            //? Converts the reponse from the API into json format so I can use it properly
+            //? Converts the response from the API into JSON format for easier processing
             const data = await response.json()
 
             if(data) {
                 setImages(data)
+                //? Indicates that loading is complete
                 setLoading(false)
             }
 
         } catch (e) {
+            //? Stores any errors that occur during the fetch process
             setErrorMsg(e.message)
+            //? Ensures loading state is set to false even if an error occurs
             setLoading(false)
         }
     }
 
+    //? useEffect triggers the fetchImages function when the `url` prop changes
     useEffect(() => {
         if(url !== '') fetchImages(url)
     },[url])
