@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs"
+import "../css/slideshow.css"
 
 
 export default function Slideshow({ url, limit = 5, page = 1 }) {
@@ -60,10 +61,10 @@ export default function Slideshow({ url, limit = 5, page = 1 }) {
                 images && images.length > 0 ?
                 images.map(imageItem => 
                     <img 
+                        className="current-image" 
                         src={imageItem.download_url} 
                         alt={imageItem.download_url}
-                        key={imageItem.id}
-                        className="current-image"                
+                        key={imageItem.id}           
                     />
                 )
 
@@ -78,11 +79,11 @@ export default function Slideshow({ url, limit = 5, page = 1 }) {
                     images.map((_, index) =>
                         <button className="current-indicator" key={index}></button>
                     )
+
+                    :
+
+                    null
                 }
-
-                :
-
-                null
             </span>
         </div>
     )
