@@ -70,9 +70,9 @@ export default function Slideshow({ url, limit = 5, page = 1 }) {
             <BsArrowLeftCircleFill onClick={() => handleLeft()} className="arrow arrow-left"/>
             {
                 images && images.length > 0 ?
-                images.map(imageItem => 
+                images.map(( imageItem, index ) => 
                     <img 
-                        className="current-image" 
+                        className={currentSlide === index ? "current-image" : "current-image current-image-hidden"} 
                         src={imageItem.download_url} 
                         alt={imageItem.download_url}
                         key={imageItem.id}           
@@ -88,7 +88,11 @@ export default function Slideshow({ url, limit = 5, page = 1 }) {
                 {
                     images && images.length > 0 ?
                     images.map((_, index) =>
-                        <button className="current-indicator" key={index}></button>
+                        <button 
+                            onClick={() => setCurrentSlide(index)}
+                            className={currentSlide === index ? "current-indicator" : "current-indicator current-indicator-hidden"} 
+                            key={index}
+                        ></button>
                     )
 
                     :
