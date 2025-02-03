@@ -38,6 +38,18 @@ export default function Slideshow({ url, limit = 5, page = 1 }) {
         }
     }
 
+    //? Moves to the previous slide, looping back to the last slide if at the first slide
+    function handleLeft() {
+        setCurrentSlide(currentSlide === 0 ? images.length -1 : currentSlide -1)
+    }
+
+    //? Moves to the next slide, looping back to the first slide if at the last slide
+    function handleRight() {
+        setCurrentSlide(currentSlide === images.length -1 ? 0 : currentSlide +1)
+    }
+
+    console.log(currentSlide)
+
     //? useEffect triggers the fetchImages function when the `url` prop changes
     useEffect(() => {
         if(url !== '') fetchImages(url)
@@ -51,12 +63,11 @@ export default function Slideshow({ url, limit = 5, page = 1 }) {
         return <div>Error occured: {errorMsg}</div>
     }
 
-    console.log(images)
 
     return (
         <div className="slideshow-wrapper">
 
-            <BsArrowLeftCircleFill className="arrow arrow-left"/>
+            <BsArrowLeftCircleFill onClick={() => handleLeft()} className="arrow arrow-left"/>
             {
                 images && images.length > 0 ?
                 images.map(imageItem => 
@@ -72,7 +83,7 @@ export default function Slideshow({ url, limit = 5, page = 1 }) {
 
                 null
             }
-            <BsArrowRightCircleFill className="arrow arrow-right"/>
+            <BsArrowRightCircleFill onClick={() => handleRight()}className="arrow arrow-right"/>
             <span className="circle-indicator">
                 {
                     images && images.length > 0 ?
