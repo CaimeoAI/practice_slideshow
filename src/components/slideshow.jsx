@@ -72,7 +72,7 @@ export default function Slideshow({ url, limit = 5, page = 1 }) {
                 images && images.length > 0 ?
                 images.map(( imageItem, index ) => 
                     <img 
-                        className={currentSlide === index ? "current-image" : "current-image current-image-hidden"} 
+                        className={currentSlide === index ? "current-image" : "current-image current-image-inactive"} 
                         src={imageItem.download_url} 
                         alt={imageItem.download_url}
                         key={imageItem.id}           
@@ -90,7 +90,7 @@ export default function Slideshow({ url, limit = 5, page = 1 }) {
                     images.map((_, index) =>
                         <button 
                             onClick={() => setCurrentSlide(index)}
-                            className={currentSlide === index ? "current-indicator" : "current-indicator current-indicator-hidden"} 
+                            className={currentSlide === index ? "current-indicator" : "current-indicator current-indicator-inactive"} 
                             key={index}
                         ></button>
                     )
